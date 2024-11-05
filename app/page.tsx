@@ -1,28 +1,27 @@
 "use client";
 
 import { useState } from 'react';
-// import BarChart from "@/app/components/bar-chart";
-// import LineChart from "@/app/components/line-chart";
 import ChartComponent from "@/app/components/chart";
 import Toggle from '@/app/components/toggle';
+import { ChartType, DataType } from "@/app/types";
 
 export default function Home() {
-  const [chartType, setChartType] = useState('Bar');
-  const [dataType, setDataType] = useState('Raw');
+  const [chartType, setChartType] = useState<ChartType>(ChartType.Bar);
+  const [dataType, setDataType] = useState<DataType>(DataType.Raw);
 
   return (
     <div className="container justify-center items-center">
       <div className="dashboard">
         <div className="toggle-container">
           <Toggle
-            option1="Bar"
-            option2="Line"
+            option1={ChartType.Bar}
+            option2={ChartType.Line}
             selected={chartType}
             onToggle={setChartType}
           />
           <Toggle
-            option1="Raw"
-            option2="Normalized"
+            option1={DataType.Raw}
+            option2={DataType.Normalized}
             selected={dataType}
             onToggle={setDataType}
           />

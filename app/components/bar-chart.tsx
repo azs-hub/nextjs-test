@@ -1,6 +1,7 @@
 "use client";
 
 import { Bar } from 'react-chartjs-2';
+import { ChartData } from 'chart.js';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,7 +13,12 @@ import {
 } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const BarChart = ({ chartData }) => {
+interface BarChartProps {
+  chartData: ChartData<'bar'>; // Specify the type for chartData
+}
+
+const BarChart: React.FC<BarChartProps> = ({ chartData }) => {
+
   // Chart options
   const options = {
     responsive: true,

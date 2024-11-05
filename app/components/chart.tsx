@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import BarChart from "@/app/components/bar-chart";
 import LineChart from "@/app/components/line-chart";
 import { fetchCSV } from '@/app/_lib/csv-parser'
+import { ChartType, DataType } from "@/app/types";
+import { ChartData } from 'chart.js';
 
-const ChartComponent = ({ chartType, dataType }) => {
-  const [chartData, setChartData] = useState(null);
+interface ChartComponentProps {
+  chartType: ChartType;
+  dataType: DataType;
+}
+
+
+const ChartComponent: React.FC<ChartComponentProps> = ({ chartType, dataType }) => {
+
+  const [chartData, setChartData] = useState<ChartData<'bar'> | ChartData<'line'> | null>(null);
   
   // Function to normalize data
-  const normalizeData = (rawData) => {
+  const normalizeData = (rawData: number[]) => {
     const max = Math.max(...rawData);
     return rawData.map(value => (value / max) * 100);
   };
@@ -38,11 +47,10 @@ const ChartComponent = ({ chartType, dataType }) => {
   }, [dataType, chartType]);
 
   // Choose the chart component based on chartType
-  const Chart = chartType === 'Line' ? LineChart : BarChart;
+  const Chart = chartType === ChartType.Line ? LineChart : BarChart;
 
   return (
     <div style={{ padding: '20px' }}>
-      
       {chartData ? <Chart chartData={chartData} /> : <p>Loading...</p>}
     </div>
   );
