@@ -34,35 +34,15 @@ body {
 }
 
 .chart-container {
-  width: 100%; /* Full width of parent */
-  height: 600px; /* Set desired height */
-  max-width: 1200px; /* Optional max-width */
-  display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #f9fafb;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
-
+  @apply w-full flex justify-center items-center p-5 rounded-sm bg-slate-50 shadow-sm;
+  height: 600px;
 }
 
 .dashboard {
-  padding: 20px;
-  width: 90vw;
-  max-width: 1200px;
-  height: 90vh;
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr 1fr;
+  @apply p-5 bg-white rounded-2xl shadow-sm;
 }
 
  /* Toggle Switch */
  .toggle-container {
-  grid-column: span 2;
-  display: flex;
-  justify-content: flex-start;
-  padding: 10px 0;
+  @apply flex justify-around py-3;
 }
